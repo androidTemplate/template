@@ -1,16 +1,18 @@
 package ${escapeKotlinIdentifiers(packageName)}
-
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.xhs.baselibrary.base.BaseActivity
 <#if applicationPackage??>
 import ${applicationPackage}.R
 </#if>
-import kotlinx.android.synthetic.main.${activityLayoutName}.*
+import kotlinx.android.synthetic.main.${fragmentLayoutName}.*
+import com.xhs.baselibrary.base.BaseFragment
 
-class ${className}Activity : BaseActivity(), ${className}Contact.I${className}View {
+class ${className}Fragment : BaseFragment(), ${className}Contact.I${className}View {
 
-    private val m${className}Presenter by lazy { ${className}Presenter().apply { attachView(this@${className}Activity) } }
+    private val m${className}Presenter by lazy { ${className}Presenter().apply { attachView(this@${className}Fragment) } }
 
     private val n${className}Req = N${className}ModelReq()
 
@@ -20,9 +22,13 @@ class ${className}Activity : BaseActivity(), ${className}Contact.I${className}Vi
 
      private var totalCount = 0
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.${activityLayoutName})
+
+     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return LayoutInflater.from(context).inflate(R.layout.${fragmentLayoutName}, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         initView()
         initData()
         initListener()
@@ -31,7 +37,7 @@ class ${className}Activity : BaseActivity(), ${className}Contact.I${className}Vi
 
     private fun initView() {
         m${className}Adapter = ${className}Adapter(m${className}List)
-        rv${className}.layoutManager = LinearLayoutManager(this)
+        rv${className}.layoutManager = LinearLayoutManager(context)
         rv${className}.adapter = m${className}Adapter
     }
 
@@ -79,6 +85,10 @@ class ${className}Activity : BaseActivity(), ${className}Contact.I${className}Vi
         hideProgressDialog()
     }
     companion object {
-        fun getInstance() = Bundle().apply { }
+        fun getInstance() = ${className}Fragment().apply { 
+            arguments = Bundle().apply {
+                
+            }
+        }
     }
 }
