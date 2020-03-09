@@ -1,22 +1,8 @@
 <?xml version="1.0"?>
 <#import "root://activities/common/kotlin_macros.ftl" as kt>
 <recipe>
-   <dependency mavenUrl="com.android.support:appcompat-v7:${buildApi}.+" />
-
-    <#if buildApi gte 22>
-        <dependency mavenUrl="com.android.support:design:${buildApi}.+" />
-    </#if>
-
-    <#if (includePermissionCheck!false)>
-        <dependency mavenUrl="com.android.support:support-annotations:${buildApi}.+" />
-    </#if>
-
-    <dependency mavenUrl="com.android.support.constraint:constraint-layout:+" />
-    <dependency mavenUrl="android.arch.lifecycle:extensions:+"/>
-
-    <#include "../common/recipe_theme.xml.ftl" />
-    <#include "../common/recipe_manifest_strings.xml.ftl" />
-
+   
+ <@kt.addAllKotlinDependencies />
     <merge from="root/AndroidManifest.xml.ftl"
              to="${escapeXmlAttribute(manifestOut)}/AndroidManifest.xml" />
 
@@ -26,11 +12,10 @@
     <instantiate from="root/res/layout/activity_template.xml.ftl"
                    to="${escapeXmlAttribute(resOut)}/layout/${activityLayoutName}.xml" />
 
-
 <instantiate from="root/res/layout/item_template_layout.xml.ftl"
                    to="${escapeXmlAttribute(resOut)}/layout/${itemLayoutName}.xml" />
 
-    <@kt.addAllKotlinDependencies />
+   
     <instantiate from="root/src/app_package/TemplateActivity.${ktOrJavaExt}.ftl"
                    to="${escapeXmlAttribute(srcOut)}/${activityName}.${ktOrJavaExt}" />
 
