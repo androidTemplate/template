@@ -17,14 +17,13 @@ class ${className}Presenter :IPresenter<${className}Contact.I${className}View>()
                 softView.get()?.showLoading()
             }.doFinally {
                 softView.get()?.hideLoading()
-                onStop()
             }
             .subscribe(
                 {
-                    if (it.code == 200) {
+                    if (it.code == 0){
                         softView.get()?.load${className}Success(it.data.mList,it.data.totalCount)
                     } else {
-                        softView.get()?.load${className}Fail(Throwable(it.msg))
+                        softView.get()?.load${className}Fail(Throwable(it.message))
                     }
                     //这里面是回调成功的方法
                 }, { throwable -> softView.get()?.load${className}Fail(throwable) }

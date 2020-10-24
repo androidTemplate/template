@@ -5,7 +5,7 @@
     <@kt.addAllKotlinDependencies />
     <instantiate from="root/res/layout/fragment_template.xml.ftl"
                    to="${escapeXmlAttribute(resOut)}/layout/${fragmentLayoutName}.xml" />
-    <instantiate from="root/src/app_package/TemplateActivity.${ktOrJavaExt}.ftl"
+    <instantiate from="root/src/app_package/TemplateFragment.${ktOrJavaExt}.ftl"
                    to="${escapeXmlAttribute(srcOut)}/${fragmentName}.${ktOrJavaExt}" />
 
     <instantiate from="root/src/app_package/NTemplateModel.${ktOrJavaExt}.ftl"

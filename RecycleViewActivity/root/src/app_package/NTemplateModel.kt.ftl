@@ -6,7 +6,7 @@ class N${className}ModelReq(
 
 class N${className}ModelResponse(
     val code: Int = -1,
-    val msg: String = "",
+    val message: String = "",
     val data: Data = Data()
 ) {
     class Data(

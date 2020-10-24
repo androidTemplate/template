@@ -73,7 +73,7 @@ class ${className}Fragment : BaseFragment(), ${className}Contact.I${className}Vi
 
     override fun load${className}Fail(throwable: Throwable) {
          handleError(throwable)
-        swipe${className}.isRefreshing
+        swipe${className}.isRefreshing=false
         m${className}Adapter.loadMoreComplete()
     }
 
