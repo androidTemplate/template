@@ -15,6 +15,6 @@ interface ${className}Contact {
     }
 
     interface I${className}Presenter{
-        fun load${className}(n${className}Req:N${className}Req)
+        fun load${className}(n${className}Req:N${className}ModelReq)
     }
 }

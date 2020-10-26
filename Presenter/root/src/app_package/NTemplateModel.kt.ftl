@@ -5,4 +5,4 @@ class N${className}Response(
     val message:String=""
 )
 
-class N${className}Req
+class N${className}ModelReq

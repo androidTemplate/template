@@ -17,7 +17,7 @@ class ${className}Fragment : Fragment(), ${className}Contact.I${className}View {
   
 
    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return LayoutInflater.from(context).inflate(R.layout.fragmentLayoutName,container,false)
+        return LayoutInflater.from(context).inflate(R.layout.${fragmentLayoutName},container,false)
     }
 	
 	 override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
